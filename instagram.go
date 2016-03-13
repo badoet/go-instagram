@@ -54,13 +54,15 @@ func (c *Client) PerformRequest(req *http.Request) ([]byte, error) {
 }
 
 // GetRecentMedia show the recent media of the Instagram account based on the access token
-func (c *Client) GetRecentMedia() (string, error) {
+func (c *Client) GetRecentMedia() ([]byte, error) {
 	url := "/users/self/media/recent/"
-	url += fmt.Sprintf("?count=%i&access_token=%s", c.count, c.token)
+	url += fmt.Sprintf("?count=%v&access_token=%s", c.count, c.token)
 	req, err := http.NewRequest("GET", Endpoint+url, nil)
+	// fmt.Println(url)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	resp, err := c.PerformRequest(req)
-	return string(resp), err
+	// fmt.Println(string(resp))
+	return resp, err
 }
