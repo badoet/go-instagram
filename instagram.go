@@ -1,7 +1,6 @@
 package instagram
 
 import (
-	// "bytes"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -54,7 +53,7 @@ func (c *Client) PerformRequest(req *http.Request) ([]byte, error) {
 	return body, err
 }
 
-// GetRecentMedia get the account info of the specified Xfers Client
+// GetRecentMedia show the recent media of the Instagram account based on the access token
 func (c *Client) GetRecentMedia() (string, error) {
 	url := "/users/self/media/recent/"
 	url += fmt.Sprintf("?count=%i&access_token=%s", c.count, c.token)
